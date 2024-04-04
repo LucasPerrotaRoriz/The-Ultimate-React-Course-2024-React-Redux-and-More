@@ -1,0 +1,16 @@
+----- Questions 
+
+Q) How to create components? What are their requirements?
+
+Q) Create a nested component and render.
+
+Q) Call a component multiple times.
+
+
+/* ========================================== */
+
+Components a just functions. They need to start in uppercase and return something and it
+can only be one thing.
+
+
+------------------------------------------------------------------------------------------------------------------------
