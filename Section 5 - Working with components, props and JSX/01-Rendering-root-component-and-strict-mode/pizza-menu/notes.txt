@@ -1,0 +1,71 @@
+----- Questions 
+
+Q) Create a react file and import the react and react dom.
+
+Q) How should components be named?
+
+Q) Render a simple "Hello React!" to the DOM.
+
+Q) What methods will you use for rendering? Explain:
+- their purpose
+- syntax and parameters
+
+Q) How does React used to render the same thing before React 18?
+
+Q) What does React strict mode do? Make an example.
+
+/* ========================================== */
+
+Components can have a different name other than App, what's important is that is uppercase.
+
+-- Imports
+The react import is necessary because is the core of the library and because you will be able to use the tools and APIs provided by React for 
+the creation and management of components.
+
+Using the import you gain access to:
+- React component definition
+Which is you can use React.component or functional components to the UI elements
+
+- JSX support
+For writing HTML on JS.
+
+- Component lifecycle methods
+Allow you to hook into different stages of a component lifecycle. 
+
+react-dom on the other hand is responsible for interacting with the DOM and rendering the components to the UI.
+
+------------------------------------------------------------------------------------------------------------------------
+
+createRoot and render are methods provided by react-dom. 
+
+- Render
+
+It renders a element to a specified component executing a function when finishing. It will also manage updates to the component
+if it's state or props changes.
+
+render renders a React element to the DOM. It has the following syntax: ReactDOM.render(element, container[, callback]). "element"
+is the element to render, "container" is where the element will be rendered, and "callback" is a function to be called when the 
+"element" is rendered.
+
+
+- createRoot 
+
+Will return a root object in which you can call render() to render a element to a container. It supports concurrent design giving better performance and 
+UX. 
+
+It has the following syntax: ReactDOM.createRoot(container[, options]). "container" is where the element will be rendered and a "options" object for 
+additional options when rendering.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Using React.StrictMode is useful because it will render components twice for finding bugs during development and React will check for any outdated 
+parts of the API.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Some debugging hints:
+
+- Check if app is running
+- Restart server
+- Reload page
+- Have terminal open to check status
