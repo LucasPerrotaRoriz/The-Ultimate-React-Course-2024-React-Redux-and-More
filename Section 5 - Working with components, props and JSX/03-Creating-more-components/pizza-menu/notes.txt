@@ -1,0 +1,15 @@
+----- Questions 
+
+Q) Code:
+- Check the finished page for text.
+- Create a Header, Menu and Footer component
+- Have Pizzas on Menu.
+- On footer make the long version, then do normally
+- Have a time on Footer
+
+
+/* ========================================== */
+
+The browser has no idea of the name of components.
+
+------------------------------------------------------------------------------------------------------------------------
