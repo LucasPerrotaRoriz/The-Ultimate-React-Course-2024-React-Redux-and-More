@@ -1,0 +1,10 @@
+----- Questions 
+
+Q) 
+
+Q) Code:
+- Make the rendering with ternary and have a fallback when false
+-
+
+
+
