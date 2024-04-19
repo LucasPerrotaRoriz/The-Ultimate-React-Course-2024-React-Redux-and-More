@@ -1,0 +1,51 @@
+----- Questions 
+
+Q) Which stage is this process?
+
+Q) What's the trigger phase? 
+
+Q) What's the render phase?
+
+Q) What's the commit phase?
+
+Q) What ways a render can trigger?
+
+Q) Where does the rendering happen?
+
+Q) When does the rendering occurs?
+
+
+----- Overview: How components are displayed on the screen
+
+This is how the process of going from React Element to DOM Element to rendering to the user works.
+
+-- Trigger phase
+
+This process starts when a new render gets triggered by most of the time a change of state on the app. State changes triggers renders.
+
+-- Render phase
+
+React will call the func and defines how to the DOM should be updated, but does not update in this phase. The term render can be confusing since on React render does not mean updating 
+the DOM or displaying UI element, it happens internally and does not produce visual changes.
+
+When it was explained about rendering it meant this phase + the next.
+
+-- Commit phase
+
+This is the phase where React renders to the DOM updating, inserting and deleting elements.
+
+The browser sees there's been a change and updates the screen. This part has nothing to do with React.
+
+
+----- How renders are triggered 
+
+There are two ways a render can trigger:
+
+- On the initial render of the app.(initial render)
+- When a state is updated in one or more components. (re-render)
+
+The process of rendering is triggered for the entire app. It may look like only the component a change happened is updated but that's not how it works.
+
+The render also does not occurs immediately after a change of state but is scheduled for when the JS engine has time. It will also occur the batching of multiple setState calls in event handlers.
+
+
