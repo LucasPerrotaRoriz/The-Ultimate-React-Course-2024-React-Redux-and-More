@@ -1,0 +1,138 @@
+----- Questions 
+
+Q) What happens in the render phase?
+
+Q) What the above process creates?
+
+Q) What will happen on the initial render?
+
+Q) What is the virtual DOM?
+
+Q) Is the process costly?
+
+Q) What relation it has with the shadow DOM?
+
+Q) What happens if a component gets updated and has children? Why this happens?
+
+Q) In the process above the entire DOM is updated?
+
+Q) What will happen to the new Virtual DOM?
+
+Q) Where reconciliation happens? What result it produces?
+
+Q) Why not simply update the entire DOM?
+
+Q) How React manages to be efficient and what it uses to do that?
+
+Q) What is reconciliation? What does the process?
+
+Q) What is the Fiber? What will it do on the initial render?
+
+Q) What is the Fiber tree?
+
+Q) What will happen to the Fiber on each reconciliation? What's it's good for?
+
+Q) Where are the state of props and components stored?
+
+Q) What is the queue of work? What can the Fiber be defined as?
+
+Q) How are the elements in the Fiber tree arranged?
+
+Q) What will both trees include?
+
+Q) Is the Fiber reconciler sync or async? What's the advantages?
+
+Q) On slide 156, what will happen if showModal is false?
+
+Q) What will happen to the new Virtual DOM?
+
+Q) What's diffing?
+
+Q) What type of DOM actions will happen and where are they stored?
+
+Q) What is the list of DOM updates?
+
+
+----- The render phase 
+
+When the render phase begins React will go throught the entire component tree, take components instances that are change happened and re-render by calling the functions.
+This process creates React Elements that are updated that will make up the virtual DOM.
+
+
+----- The Virtual DOM(React Element Tree)
+
+On the initial render React will get the entirety of the component tree and create one single, big component called Virtual DOM. The Virtual DOM is nothing more than a tree of 
+elements created from all instances in the component tree. 
+
+This process is cheap and fast, even it there's many iterations because it's a JS object.
+
+It has nothing to do with the shadow DOM.
+
+If for example a state is updated on a certain component, then React will call the component func and place it in a new tree, a new virtual DOM. One important thing about this that 
+when React renders a component, it will also render all of it's child components as well, no mattering it the props passed changed or not. If you update a top component in the 
+tree, everything will be re-rendered. This happens because React don't know wether the children will get affected. The entire DOM is not updated, it's the virtual DOM that gets 
+recreated.
+
+
+----- The render phase (Back)
+
+The new Virtual DOM will then be reconciled with the Fiber Tree, as it exists before the first state update. This happens on the reconciler called Fiber. The results will be an updated 
+Fiber Tree that will later be used to write to the DOM. 
+
+
+----- What is reconciliation and why we need it?
+
+Why is all this process necessary? Why not simply update the entire DOM when a change occurs?
+
+- That's because writing to the DOM is inefficient and wasteful compared to the Virtual DOM which is cheap and fast. 
+- When a change happens, only a small part needs to be updated.
+
+Only the initial render it will be from scratch
+
+React in order to be efficient will reuse as much as it can. For React to know what changed it uses the process of reconciliation.
+
+Reconciliation will be the process where React decides which DOM elements need to be inserted, deleted or updated. The result of reconciliation will be a list of DOM operations 
+necessary to update the current DOM with a new state. 
+
+This process is done by the reconciler which is the engine/heart of React. It will not touch the DOM directly but indicate what the next UI snapshot should be based on the current 
+state.
+
+
+----- The reconciler: Fiber
+
+On the initial render Fiber will take the entire React Element Tree and builds the Fiber Tree. It's an internal tree that for each component instance and DOM element in the App, there will be one Fiber.
+The Fiber is not recreated on every render, so it's never destroyed. It's a mutable data structure that once created on the initial render mutates on each reconciliation. The Fiber tree is perfect 
+to keep track of current component states,props,side effects, used hooks list etc.
+
+The state of components and props is stored in the corresponding Fiber on the Fiber tree. A Fiber will also have a Queue of work having things like updating state,refs,running registered side effects, 
+performing DOM updates and more. The Fiber can be defined as a unit of work.
+
+The Fiber tree will have elements arranged differently then in the Virtual DOM. Instead of having a parent-child relation, each first child has a link to it's parent and the other child have a link 
+to their previous sibling. This structure is a linked list.
+
+Both trees include not only React elements but also regular DOM elements like an h3 or button.
+
+One important thing about the Fiber reconciler is that work can be done asynchronously. The rendering process can be done in chunks, tasks have priorities and work can be paused,reused or throw away 
+if not valid. This enables modern concurrent features like Suspense or transitions in React 18. Rendering can be paused or resumed later so you don't block the browser JS engine with long renders.
+
+This is all possible because the render phase does not produce a visible output.
+
+
+----- Reconciliation In Action 
+
+Slide page 156
+
+On the App component there's a state called showModal. If it's update to false then a re-render is triggered generating a new Virtual DOM. The Modal and children are gone when showModal is false and 
+the rest of components are re-rendered, since App updated all it's children will be as well.
+
+The new Virtual DOM will need to be reconciled with the Fiber tree which results in a new update tree. Internally this tree which is an update Fiber tree is called an work in progress tree.
+
+The comparison between elements based on the positions is called diffing.
+
+The work that will happen is an DOM update on the button text in the updated Fiber tree. The Modal and children are marked as DOM deletions. When the mutations are done they will be put in a list of effects 
+to be used in the commit phase.
+
+
+----- The render phase (Back)
+
+There will be the updated Fiber tree and a list of DOM updates(list of effects) which is the final result of the render phase. Still nothing is rendered yet.
