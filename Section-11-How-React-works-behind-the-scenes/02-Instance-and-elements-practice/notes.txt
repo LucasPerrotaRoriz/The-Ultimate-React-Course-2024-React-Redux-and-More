@@ -1,0 +1,36 @@
+----- Questions 
+
+Q) How to look at a component instance?
+
+Q) What is the $$typeof?
+
+Q) What is the problem of directly calling a component?
+
+Q) What will the below cause?
+{TabContent({ item: content.at(0) })}
+
+
+
+You can look at a component instance by using it then log it.
+
+Example: 
+console.log(<DifferentContent/>);
+
+The $$typeof is a security feature implemented by React to protect you from cross-site scripting attacks.
+The Symbol is a type that can't be transmitted via JSON, so it can come from an API call. So if a hacker sent 
+a fake component from an API, React would not include it.
+
+Why not call the function directly like this?
+console.log(DifferentContent/);
+
+What will happen is that it will be of a different type, in this case the div inside the component. The props 
+will also be the arguments given to the component. React will see it as a raw component and not an instance.
+
+{TabContent({ item: content.at(0) })}
+
+When you do the above the state of the component will also be in the parent state. Tabbed will have hooks that come 
+from the component. You want them to be inside TabContent and not the parent and it can also be said that it not a 
+component anymore because it can't manage it's state. This should be avoid because of issues that may arise and it breaks 
+the rules of hooks.
+
+
