@@ -1,0 +1,37 @@
+----- Questions
+
+Q) What is a component?
+
+Q) What does a component returns?
+
+Q) What is a component instance?
+
+Q) What are React elements?
+
+Q) What will JSX be converted to?
+
+Q) What a React Element contains?
+
+Q) What the React element is converted to?
+
+Q) Are React elements rendered in the DOM?
+
+
+----- Component VS. Instance VS. Element
+
+-- Component 
+Components is a JS function that describes a piece of the UI. It will return React elements(element tree) usually in JSX.
+The component works like a blueprint of a generic UI element. Out of this component React create one or multiple instances. React will do this every time the components is used.
+
+-- Component Instance
+For example the code from this section has Tab repeated 4 times and therefore the component tree will have 4 instances of Tab. Behind the scenes React calls Tab func 4 times.
+The instance is a physical manifestation of the component existing on the component tree. Each instance will also have it's own state, props and life cycle that can be "born", "live" and "die".
+Components and components instances can be used interchangeably.
+
+-- React Element
+Each of the instances will return one or more React elements. Behinds the scenes JSX gets converted to multiple React.createElement func calls. When React call these functions the result will be 
+a React element, that is a immutable JS object that is keep in memory by React. A React element contains all necessary info in order to create the DOM elements for the instance of the component.
+
+-- DOM Element(HTML)
+The React element is then converted into DOM elements and render it to the browser. The DOM elements will be the actual representation of the component instance.
+React element are not rendered to the DOM, they just live in the React app
