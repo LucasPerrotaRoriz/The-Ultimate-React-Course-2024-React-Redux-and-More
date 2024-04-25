@@ -1,0 +1,10 @@
+----- Questions 
+
+Q) 
+
+Q) Code:
+- If pizza is sold out have it show price on a ternary
+- Make with two ways one with text the other with the element
+- Have a ternary that renders pizza differently if ir is sold out.
+
+
