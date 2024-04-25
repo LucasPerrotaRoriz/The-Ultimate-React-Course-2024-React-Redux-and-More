@@ -1,0 +1,13 @@
+----- Questions 
+
+Q) What is and how to use a React fragment?
+
+Q) Inspect the DOM tree to check the elements 
+
+Q) 
+
+Q) Code:
+- Create a paragraph text to be returned along side the menu use react fragments
+- Use fragments on App to remove container
+
+React fragment gives you he ability to group elements without having traces in the element tree/DOM.
