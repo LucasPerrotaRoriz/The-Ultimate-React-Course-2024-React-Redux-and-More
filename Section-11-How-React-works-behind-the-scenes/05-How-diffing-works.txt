@@ -1,0 +1,37 @@
+----- Questions 
+
+Q) What is diffing? Why are the two assumptions important?
+
+Q) What is diffing first assumption?
+
+Q) What is diffing second assumption?
+
+Q) What if you want to create a new component with new state, how to do that?
+
+
+Diffing uses two assumptions that are fundamental: 
+
+- Two different elements will produce different trees
+- Elements with a stable key prop stay the same across renders
+
+This allows the algorithm to be faster.
+
+Diffing is comparing two elements between two renders based on their position on the tree. The situations to be considered are:
+
+1) Same position, Different elements
+
+If an app is re-rendered and in the process of diffing a change is found, React will think that the element and it's children are no longer 
+valid. The element will be destroyed and removed from the DOM.
+
+If the child element stays the same then the tree is rebuilt with new elements and if there were components with state, the state is lost, resetting state.
+
+This will occur for DOM elements like a <header> and React element like a component.
+
+2) Same position, Same element
+
+If a render the element is the same as before, the element is keep in the DOM, including child elements and state. 
+Working for DOM and React elements.
+If a change happens for example on a className or a attribute changing the number, React will then mutate the DOM element attributes and in the 
+case of React elements pass in the new prop.
+
+Sometimes you may not want that, preferring that a new component instance is created with new state. For that you can use the key prop

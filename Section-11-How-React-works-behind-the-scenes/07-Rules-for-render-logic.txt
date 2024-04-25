@@ -1,0 +1,75 @@
+----- Questions 
+
+Q) What is render logic?
+
+Q) What is event handler functions?
+
+Q) What isa side effect?
+
+Q) What is a pure function?
+
+Q) Are side effects bad?
+
+Q) What it means for a component to be pure?
+
+Q) What render logic cannot have?
+
+Q) What are some examples of harmless side effects?
+
+Q) Where are side effects encouraged to be used? 
+
+Q) What hook register side effects?
+
+
+----- The Two types of logic in React components
+
+There's two types of logics:
+
+1. Render logic 
+Code that lives at the top level of the component function and participates in describing how the component view looks. To identify, render logic is 
+code that gets executed every time the component renders, each time the function is called.
+
+
+2. Event handler functions 
+Executed as a consequence of the event that the handler is listening for and is code that does things like updating state, read input field etc...
+
+React requires component to be pure in order for everything to work as expected.
+
+
+----- Functional programming principles
+
+A side effect is when a function requires any data outside of it's scope, when a function modifies data outside it's scope.
+Example:
+const areas = {}
+
+function circleArea(r) {
+    areas.circle = 3.14 * r * r
+}
+
+A pure function does not change any variables outside it's scope and when given an input it always returns the same output.
+Example:
+
+function circleArea(r) {
+    return 3.14 * r * r
+}
+
+Side effects are not bad otherwise applications would not exist. What's important is when or how to create a side effect.
+
+
+----- Rules for render logic 
+
+A component must be pure when it comes to render logic, so when given the same props(input), a component instance must always return the same JSX(output).
+
+Render logic must be without side effects. In other words it can't have an interaction with the outside.
+
+Render logic cannot:
+- Perform network requests, meaning API calls
+- Start timers
+- Directly use the DOM API
+- Mutate objects or variables outside it's scope. This is one of the reasons why you can't mutate props.
+- Update state or refs because it will create an infinite loop.
+
+There some side effects done like logging but they do no harm, so it's ok to use them.
+
+So how can you for example make an API call? These side effects are forbidden on render logic but you also have the handler functions where side effects are recommended, 
+having a special hook to register side effects called useEffect.

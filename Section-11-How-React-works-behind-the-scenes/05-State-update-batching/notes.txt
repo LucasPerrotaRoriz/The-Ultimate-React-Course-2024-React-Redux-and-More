@@ -1,0 +1,33 @@
+----- Questions 
+
+Q) 
+
+Q) Code:
+- Have a function called handleUndo to reset state of details and likes
+- Log a message on function
+- Log a message on handleUndo with a state
+- Implement triple increment and log state
+- Implement it now with a callback 
+- Implement calling the method
+- Have a callback on the +1 increment
+- Implement the reset with the timer
+
+
+handleUndo state updates are batched and cause one re-render. You can test this by logging a message each 
+time the components is rendered. Two messages will appear but that is not related to re-rendering
+
+If you click the undo button the log for the component does not show, only the state of the prop. That happens because the state of the props 
+are at their default, so React did not update then because current state === new state. React will not even try to update the state and not re-render 
+the component instance.
+
+If you implement the triple increment and do to it you use three setLikes 3 times, it will not update the value to three, it will be one.
+Since the state update is async every setLikes(likes + 1); like is equal 0, so all three do 0 + 1.
+
+To fix this behavior you use a callback function. With the callback function you will get access to the latest updated state.
+
+Remember and important thing that when you set state on the previous state or based on the current state, always use a callback function.
+
+If you go back to React 17 and try undoing after 2s, there will be two renders.
+
+
+

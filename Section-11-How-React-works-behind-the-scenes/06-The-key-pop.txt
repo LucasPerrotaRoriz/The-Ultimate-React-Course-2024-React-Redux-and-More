@@ -1,0 +1,65 @@
+----- Questions
+
+Q) What is a key prop?
+
+Q) What is the diffing algorithm assumptions?
+
+Q) What happens if the key stay in the same position?
+
+Q) What happens if the key stay changes between renders?
+
+Q) What will happen if a ul contains two components and a nw one is added at the top?
+
+Q) How to fix the problem above?
+
+Q) What is a stable key?
+
+Q) What's the recommendation on using keys?
+
+Q) You have a component inside another that has certain props and a state. What will happen if you change the prop?
+
+Q) How to fix the above issue?
+
+
+----- What is the key prop?
+
+It's a special prop that you can use to tell the diffing algorithm that something is unique working for DOM and React elements. With this you can give each instance a id that React will use to
+differentiate between multiple instances of the same component.
+
+Why is this necessary?
+
+The second assumption of the diffing algorithm is that, if a key stays in the same position across renders, the element will be kept in the DOM even if the position in the tree changes.
+1) Using keys in lists
+
+If a key changes between renders, the element is destroyed and new a new one is created even if the position of the tree is the same as before.
+2) Using keys to reset state
+
+
+----- Use case 1 - Keys in lists [STABLE KEY]
+
+-- No keys 
+As an example if there's a ul with two components, if you add a third at the first position, the first and second will be in different positions, so React will remove and recreate then in the DOM which can 
+be bad for performance because you're removing and adding the same element.
+
+-- With keys
+You can add a key="" property to identify each instance, so when you add a new component to the top, the 2 other components will not removed and added again. They will have a different position but since the 
+keys are the same, the elements are kept in the DOM. This will create a more performant UI.
+
+It's called stable because the keys is the same across renders.
+
+Always use the key prop when you have multiple instances of a component.
+
+
+----- Use case 2 - Key prop to reset state [CHANGING KEY]
+
+If you have a Component inside another when it passes a prop, will create a certain state. If the value of the prop is changed the state will not be changed because one of the diffing rules say that if the 
+same element stays at the same position in the tree, the DOM element state is kept.
+
+You can use the key="" prop to uniquely identify the components instance. When a new instance is created you can give different props and a new key. This will reset the state.
+
+
+
+
+
+
+

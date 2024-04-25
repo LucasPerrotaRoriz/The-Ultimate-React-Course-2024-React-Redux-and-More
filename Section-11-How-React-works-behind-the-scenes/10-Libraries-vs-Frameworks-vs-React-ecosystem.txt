@@ -1,0 +1,54 @@
+----- Questions 
+
+Q) What is a frameworks? What are its advantages and disadvantages?
+
+Q) What is a library? What are its advantages and disadvantages?
+
+
+----- Framework vs Library
+
+A framework contains everything that you may need in order to create a large scale app. An example is angular that already has Form management, routing. 
+The bad thing about this is that if you dislike something, there's nothing you can do about that.
+
+React can be defined as a View library because it draws components into the UI. If you want to build a complete app you will need to include external applications 
+for example routing, styling, form management etc.
+
+This gives the advantage of being able to choose what you want to include in the app, having no unused tool. The disadvantage is that you have to research and keep 
+on the look out for the tools and track if they still supported.
+
+
+----- React 3rd-party library ecosystem
+
+Important ones have a *.
+
+1 - Routing(for SPAs) = React router*, React Location
+
+2 - HTTP Requests = JS Fetch*, Axios
+
+3 - Remote state management = React query*, SWR, Apollo
+
+4 - Global state management = Context API*, Redux*, Zustand
+
+5 - Styling = CSS Modules*, Styled components*, Tailwinds CSS*
+
+6 - Form management = React hook form*, Formik
+
+7 - Animations/transitions = Motion, react-spring
+
+8 - UI Components = Material UI, Chakra, Mantine
+
+More:
+Socket.io 
+Firebase
+Storybook
+Strapi
+React Three Fiber
+Prisma
+Panda CSS
+
+----- Frameworks built on top of React
+
+There are frameworks built upon React and they are: Next.js, Remix, Gatsby. They are called opinionated because other devs have decided on routing, state management, 
+form management etc...
+
+Some will also have additional features such as SSR, SSG, DX etc... Some will be possible to build fullstack apps.

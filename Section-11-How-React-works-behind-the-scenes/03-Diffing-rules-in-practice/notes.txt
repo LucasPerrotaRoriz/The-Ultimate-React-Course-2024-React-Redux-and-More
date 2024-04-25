@@ -1,0 +1,16 @@
+----- Questions 
+
+Q) 
+
+Q) Code:
+
+
+If you hide the text or give some likes and then move to different tabs the values will remain.
+
+Every time you click on the tab the component is re-rendered but in the component tree the it will be 
+in the same position and since it stays on the same position it maintains it's state across renders. 
+
+The TabContent component is not destroyed staying in the DOM, the props are the things changing.
+
+If you click the forth tab, a new component is rendered and if you go back to the previous tabs the 
+texts will show and the likes are changed because the states are reset.

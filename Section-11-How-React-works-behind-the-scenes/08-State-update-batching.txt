@@ -1,0 +1,65 @@
+----- Questions 
+
+Q) When do renders occurs?
+
+Q) What will happen if a function has three state updates?
+
+Q) Why the above happens and why is important?
+
+Q) If in the middle of a function updating the states has a log for a state. What will happen?
+
+Q) Where will the state be stored?
+
+Q) Why is said state updates are async?
+
+Q) What will happen if there's only one state?
+
+Q) How to update state based on previous value?
+
+Q) Where do auto batching happens?
+
+
+
+----- How state updates are batched
+
+State updates are batched.
+
+Render do not trigger immediately but schedule for when the JS engine has "free time". There will be batching of multiple setState calls in event handlers.
+
+In the example three states are defined and on a button they are reset. 
+
+Example:
+const reset = function() {
+    setAnswer('')
+    console.log(answer)
+    setBest(true)
+    setSolved(false)
+}
+
+By seeing the above code you would think that the states would be updated to their given values and a new render and commit phase would occur for each state.
+
+What really happens is the the states are batched into one state update. Updating multiple states won't take immediate effect, causing a new render for each. They are all 
+updated in one go and then React triggers the render and commit phase. React works like this because it might think they represent a View. This makes it so, renders are not 
+wasted for better performance.
+
+What will it be the value of answer when logging?
+
+The state will be stored in the fiber tree during the render phase and at this point re-render has not happened. React is reading line by line to see what needs to be 
+updated. The answer will contain the current state, not the updated one. This is called a stale state. 
+
+Updating state in React is async because React will not give the update state immediately after the call, only when re-render happens. This will also be true, when there's only one state 
+to be updated.
+
+If you need to update state based on previous value, you can use setState with a callback.
+
+
+----- Batching beyond event handler functions
+
+Before React 18, React only did auto batching on event handlers and not in situation where a browser event happened.  React 18 also allows batching on timeouts, promises and native events. 
+Before it for example, on a setTimeout, they would be updated one by one, rendering three times. Automatic batching will happen every time on new React version.
+
+You can opt to not use this feature by using ReactDom.flushSync() but it's rarely used.
+
+
+
+

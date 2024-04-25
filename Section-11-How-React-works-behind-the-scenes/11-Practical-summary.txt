@@ -1,0 +1,37 @@
+----- Questions 
+
+Q) What is a component? 
+
+Q) What happens when you use a component? What does it contain?
+ 
+Q) What does a component return?
+
+Q) What is rendering? What does it do?
+
+Q) What causes a render and where does it happen?
+
+Q) What happens if a component is re-rendered and has child elements?
+
+Q) What is reconciliation?
+
+Q) What is diffing? What are the 2 possibilities?
+
+Q) What is a key prop and it's uses?
+
+Q) Why you should never declare a component inside another? 
+
+Q) What is render logic?
+
+Q) Where can side effects occur?
+
+Q) When is React updated and by whom?
+
+Q) What happens if you have multiple state updates on a handler function? What's the name of the process and where can it be used?
+
+Q) What does it mean state updates are async? 
+
+Q) What is a synthetic event objects?
+
+Q) What is React? 
+
+

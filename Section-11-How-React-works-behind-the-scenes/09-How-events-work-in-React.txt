@@ -1,0 +1,90 @@
+----- Questions 
+
+Q) What happens if for an example you have a button at the bottom of the DOM tree and you click it?
+
+Q) How to trigger an action on the element the click happened?
+
+Q) What will happen in the capturing and bubbling phase? 
+
+Q) When are events listened to? What does it mean?
+
+Q) What is event delegation? Give an example.
+
+Q) What's the importance of knowing this?
+
+Q) If you have a onClick event on a button what do you think it happens? What actually happens?
+
+Q) Where will events be registered? And how are they handled?
+
+Q) What happens if you have multiple events of the same type?
+
+Q) Describe the process of when a button is cliked.
+
+Q) What is a synthetic event? What can they do?
+
+Q) What's the benefits of synthetic events?
+
+Q) What are the three differences of event handlers in React vs JS?
+
+----- Event propagation and delegation
+
+-- Event propagation 
+When you have a DOM tree and for example, you click a button at the bottom of the tree, an event object will be created at the root of the document and not where it 
+happened. The event will then travel down all the way down in the capturing phase until it reaches the target element where the event happened.
+
+You can have an event handler on the element that will trigger some actions. When the target element is reached it will then travel all the way back up in the bubbling
+phase. During capturing and bubbling the event goes throw every single child and parent element one by one. It will be as if the event happened in all of these elements.
+
+Event handlers listen for events on the target and during the bubbling phase. This means that every single handler on a parent element will also be executed in the bubbling 
+phase as long as it listen for the same event. You can stop this from happening by using stop stopPropagation() on the event object. This works on JS and React.
+
+-- Event Delegation
+
+Handling events for multiple elements in one single parent element. If you had 1000 buttons and wanted a event on each, this would probably cause performance and memory 
+issues. A simple solutions is by adding the handler to the parent element of all the buttons. You could then use target to check which button the event occurred. This 
+is common on JS but not React.
+
+The importance of knowing all this is because issues may happen due to bubbling and because that's what React does with events. 
+
+
+----- How React handles events
+
+Imagine you have an event like onClick on a button or header.
+
+The code:
+<button className="btn" onClick={() => setLoading(true)}
+
+What you think happens:
+document.querySelector('.btn').addEventListener('click', () => setLoading(true))
+
+What actually happens:
+document.querySelector('#root').addEventListener('click', () => setLoading(true))
+
+React will register all event handlers on the root DOM container and it will be where all events are handled. The root element is the React element where the app is displayed.
+You can imagine React adds all event handlers to the root element, in reality the process is a lot more complex.
+
+React registers one event handler function per event type, doing so at the root node of the fiber tree during the render phase. If for example you multiple onClicks events, React will 
+bundle all of them together and have one big event handler to the root node of the fiber tree. React performs event delegation for all elements behind the scenes.
+
+So the process is: A click happens on a button, an event is fired which will travel down the DOM tree until it reaches the target. The event bubbles up and when it reaches the root container,
+the event will then be handled according to handlers that match the event and handlers. When everything is done the event continues to bubble up, until it disappears.
+
+What matters in this situation is the DOM tree and not the component. Just because a component might be a child of another it does mean it will be the same on the DOM tree.
+
+
+----- Synthetic events 
+
+When you declare an event handler you can access the event object on JS but it is different on React. React will give a synthetic event, that can be described as a 
+thin wrapper around DOM's native object. They are similar to event objects but with some additions. Synthetic events have the same interface as on JS and have access to methods like 
+stopPropagation() and preventDefault().
+
+What makes them different is that they are implemented in a way so that all events work in the same way across browsers. Most of these event will bubble like focus, blur and change,
+except for scroll.
+
+-- Event handlers React vs JS
+
+- Attributes names are camelCased, so it's onClick not onclick or click. 
+- Default events cannot be prevented by using false, only using preventDefault() will work.
+- If you need to catch an event in the capture phase just attach "Capture", for example "onClickCapture".
+
+

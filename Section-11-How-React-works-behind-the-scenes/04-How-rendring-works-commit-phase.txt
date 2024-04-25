@@ -1,0 +1,41 @@
+----- Questions 
+
+Q) What will be used in the commit phase?
+
+Q) What will happen in the commit phase?
+
+Q) How does committing happens? Why it works like this?
+
+Q) What in happen to the workInProgress tree?
+
+Q) What does each phase:
+- render 
+- commit 
+- paint 
+
+Q) Is it in this phase that React renders to the DOM? Why is done like this?
+
+
+----- The commit phase and browser paint
+
+The list of DOM updates will then be used in the commit phase.
+
+In this phase React writes to the DOM doing insertions,deletions and updates one by one. You may also hear that React flushes updates to the DOM in the commit 
+phase.
+
+Committing happens in one go and is synchronous and can't be stopped liked the render phase. It works like so the DOM does not show partial results ensuring 
+consistency on the UI. 
+
+The workInProgress tree becomes the current tree for the next render cycle. The browser will notice and change the UI based on the updates.
+
+The render phase is done by React, the paint by a browsers like google,mozilla. The commit phase is done by a separate library called 
+ReactDOM.
+
+React never touches the DOM and does not know where the result is committed and painted. React was created like this to be separate from the platform
+where element show, allowing React to be used by different hosts/renderers like android apps, videos, documents etc. 
+
+
+
+
+
+
