@@ -1,9 +1,0 @@
------ Questions 
-
-Q) 
-
-Q) Code:
-- Extract the order from footer into a new component
-- 
-
-Extracting JSX into new components can be important when they become too big.
